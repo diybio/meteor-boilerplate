@@ -1,4 +1,8 @@
 <template name="header">
   <header>
+  {{accountButtons}}
+  {{#if currentUser}}
+    <li><a href="/profile">Edit profile</a></li>
+  {{/if}}
   </header>
 </template>
