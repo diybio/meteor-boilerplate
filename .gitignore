@@ -3,3 +3,5 @@
 *.sublime-workspace
 smart.lock
 dump
+packages
+!packages/accounts-entry

@@ -54,6 +54,9 @@ Template.entrySignUp.events
     email = t.find('input[type="email"]').value
     password = t.find('input[type="password"]').value
 
+    address1 = t.find('input[name="address1"]').value
+    address2 = t.find('input[name="address2"]').value
+
     fields = Accounts.ui._options.passwordSignupFields
 
     trimInput = (val)->
@@ -83,6 +86,14 @@ Template.entrySignUp.events
 
     email = trimInput email
 
+    # left-side symbol corresponds to property name in db; this object is
+    # passed in whole-sale to the db by accountsCreateUser server method.
+    # see entry.coffee 
+    address = 
+      address1: address1
+      address2: address2
+
+
     emailRequired = _.contains([
       'USERNAME_AND_EMAIL',
       'EMAIL_ONLY'], fields)
@@ -107,7 +118,7 @@ Template.entrySignUp.events
       if err
         console.log err
       if valid
-        Meteor.call('accountsCreateUser', username, email, password, (err, data) ->
+        Meteor.call('accountsCreateUser', username, email, password, address, (err, data) ->
           if err
             Session.set('entryError', err.reason)
             return
