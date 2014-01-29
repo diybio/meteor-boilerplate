@@ -11,14 +11,15 @@ Meteor.startup ->
     entryValidateSignupCode: (signupCode) ->
       not AccountsEntry.settings.showSignupCode or signupCode is AccountsEntry.settings.signupCode
 
+    # XXX added address object
     accountsCreateUser: (username, email, password, address) ->
       if username
         Accounts.createUser
           username: username
           email: email
           password: password
-          #profile: AccountsEntry.settings.defaultProfile || {}
-          #TODO add default profile 
+          # profile: AccountsEntry.settings.defaultProfile || {}
+          # TODO add default profile 
           profile: {address: address}
       else
         Accounts.createUser

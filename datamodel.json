@@ -1,3 +1,18 @@
+// architecture
+// using forked accounts-entry package located (not symlinked) in 
+// packages/accounts-entry/ directory. Inside:
+// - XXX in comments designate changes from the original code
+// - sign-up/signUp.html contains html view code.
+// - sign-up/signUp.coffee contains template helpers for the signup form.
+// - the 'address' object is implicitly defined in signUp.coffee and explicitly below.
+// - entry.coffee defines the accountsCreateUser() Meteor.method that signUp.coffee
+//    calls to create new users. We added a field to accept an 'address' object.
+// 
+// How do we store the results of the address validation service? Look at
+// everythinglocation.com/field-descriptions/ to see what they return. Planning to just
+// save the validatedAddress string for display (shouldn't be directly editable).
+
+// json User datamodel
 {
   _id: "bbca5d6a-2156-41c4-89da-0329e8c99a4f",  // Meteor.userId()
   username: "cool_kid_13", // unique name - WE DON'T SET THIS
@@ -12,12 +27,14 @@
     address: {
       firstName: "Jane",
       lastName: "Biologist",
-      address1: "100 Pennsylvania Ave",
-      address2: "Apt 120",
-      city: "Washington",
-      state: "DC",
-      postalCode: "01234",
-      countryISO: "01"
+      orgn: "Bio-Inc",
+      add1: "100 Pennsylvania Ave",
+      add2: "Apt 120",
+      lcty: "City",
+      admn: "State",
+      pcde: "01234",
+      ctry: "01",
+      validatedAddress: "Jane Biologist\nBio-Inc\n100 Pennsylvania Ave Apt120\nCity\nState\nZip\nCountry"
     },
   },
   services: {
